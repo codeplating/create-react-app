@@ -572,6 +572,29 @@ module.exports = function (webpackEnv) {
                 'sass-loader'
               ),
             },
+            // "graphql" generates JSX-TypeScript from graphql query files
+            {
+              test: /\.graphql$/,
+              use: [
+                {
+                  loader: require.resolve('babel-loader'),
+                  options: {
+                    customize: require.resolve(
+                      'babel-preset-react-app/webpack-overrides'
+                    ),
+                    presets: [
+                      [
+                        require.resolve('babel-preset-react-app'),
+                        {
+                          runtime: hasJsxRuntime ? 'automatic' : 'classic',
+                        },
+                      ],
+                    ],
+                  },
+                },
+                { loader: require.resolve('graphql-let/loader') },
+              ],
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
