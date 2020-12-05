@@ -5,11 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import './assets/scss-styles.scss';
+import React from "react";
+import "./assets/scss-styles.scss";
 
-const ScssInclusion = () => (
-  <p id="feature-scss-inclusion">We love useless text.</p>
-);
+const ScssInclusion = () => <p id="feature-scss-inclusion">We love useless text.</p>;
 
 export default ScssInclusion;

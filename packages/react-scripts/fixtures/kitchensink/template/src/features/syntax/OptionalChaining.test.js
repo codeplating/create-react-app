@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import OptionalChaining from './OptionalChaining';
+import React from "react";
+import ReactDOM from "react-dom";
+import OptionalChaining from "./OptionalChaining";
 
-describe('optional chaining', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    return new Promise(resolve => {
+describe("optional chaining", () => {
+  it("renders without crashing", () => {
+    const div = document.createElement("div");
+    return new Promise((resolve) => {
       ReactDOM.render(<OptionalChaining onReady={resolve} />, div);
     });
   });

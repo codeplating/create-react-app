@@ -6,17 +6,17 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import type { Theme } from '../styles';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import type { Theme } from "../styles";
 
 const closeButtonStyle = (theme: Theme) => ({
   color: theme.closeColor,
-  lineHeight: '1rem',
-  fontSize: '1.5rem',
-  padding: '1rem',
-  cursor: 'pointer',
-  position: 'absolute',
+  lineHeight: "1rem",
+  fontSize: "1.5rem",
+  padding: "1rem",
+  cursor: "pointer",
+  position: "absolute",
   right: 0,
   top: 0,
 });
@@ -28,11 +28,7 @@ type CloseButtonPropsType = {|
 function CloseButton({ close }: CloseButtonPropsType) {
   const theme = useContext(ThemeContext);
   return (
-    <span
-      title="Click or press Escape to dismiss."
-      onClick={close}
-      style={closeButtonStyle(theme)}
-    >
+    <span title="Click or press Escape to dismiss." onClick={close} style={closeButtonStyle(theme)}>
       ×
     </span>
   );

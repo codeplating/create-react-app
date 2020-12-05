@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 function load(name) {
   return [
@@ -28,7 +28,7 @@ export default class TemplateInterpolation extends Component {
   }
 
   async componentDidMount() {
-    const users = load('user_');
+    const users = load("user_");
     this.setState({ users });
   }
 
@@ -39,7 +39,7 @@ export default class TemplateInterpolation extends Component {
   render() {
     return (
       <div id="feature-template-interpolation">
-        {this.state.users.map(user => (
+        {this.state.users.map((user) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>

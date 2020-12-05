@@ -6,28 +6,28 @@
  */
 
 /* @flow */
-import React, { useContext, useEffect } from 'react';
-import { ThemeContext } from '../iframeScript';
+import React, { useContext, useEffect } from "react";
+import { ThemeContext } from "../iframeScript";
 
-import type { Node as ReactNode } from 'react';
-import type { Theme } from '../styles';
+import type { Node as ReactNode } from "react";
+import type { Theme } from "../styles";
 
 const overlayStyle = (theme: Theme) => ({
-  position: 'relative',
-  display: 'inline-flex',
-  flexDirection: 'column',
-  height: '100%',
-  width: '1024px',
-  maxWidth: '100%',
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  padding: '0.5rem',
-  boxSizing: 'border-box',
-  textAlign: 'left',
-  fontFamily: 'Consolas, Menlo, monospace',
-  fontSize: '11px',
-  whiteSpace: 'pre-wrap',
-  wordBreak: 'break-word',
+  position: "relative",
+  display: "inline-flex",
+  flexDirection: "column",
+  height: "100%",
+  width: "1024px",
+  maxWidth: "100%",
+  overflowX: "hidden",
+  overflowY: "auto",
+  padding: "0.5rem",
+  boxSizing: "border-box",
+  textAlign: "left",
+  fontFamily: "Consolas, Menlo, monospace",
+  fontSize: "11px",
+  whiteSpace: "pre-wrap",
+  wordBreak: "break-word",
   lineHeight: 1.5,
   color: theme.color,
 });
@@ -56,14 +56,14 @@ function ErrorOverlay(props: ErrorOverlayPropsType) {
         shortcutHandler(e.key);
       }
     };
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener("keydown", onKeyDown);
     if (iframeWindow) {
-      iframeWindow.addEventListener('keydown', onKeyDown);
+      iframeWindow.addEventListener("keydown", onKeyDown);
     }
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener("keydown", onKeyDown);
       if (iframeWindow) {
-        iframeWindow.removeEventListener('keydown', onKeyDown);
+        iframeWindow.removeEventListener("keydown", onKeyDown);
       }
     };
   }, [shortcutHandler]);

@@ -6,12 +6,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 // @remove-on-eject-end
-'use strict';
+"use strict";
 
-const {
-  dismissRuntimeErrors,
-  reportRuntimeError,
-} = require('react-error-overlay');
+const { dismissRuntimeErrors, reportRuntimeError } = require("react-error-overlay");
 
 module.exports = {
   clearRuntimeErrors: dismissRuntimeErrors,

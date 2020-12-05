@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 function load() {
   return [
-    { id: 1, name: '1' },
-    { id: 2, name: '2' },
-    { id: 3, name: '3' },
-    { id: 4, name: '4' },
+    { id: 1, name: "1" },
+    { id: 2, name: "2" },
+    { id: 3, name: "3" },
+    { id: 4, name: "4" },
   ];
 }
 
@@ -39,7 +39,7 @@ export default class ObjectDestructuring extends Component {
   render() {
     return (
       <div id="feature-object-destructuring">
-        {this.state.users.map(user => {
+        {this.state.users.map((user) => {
           const { id, ...rest } = user;
           // eslint-disable-next-line no-unused-vars
           const [{ name, ...innerRest }] = [{ ...rest }];

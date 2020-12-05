@@ -1,5 +1,5 @@
 // @flow
-import Anser from 'anser';
+import Anser from "anser";
 
 export type ErrorLocation = {|
   fileName: string,
@@ -23,8 +23,8 @@ const lineNumberRegexes = [
 // Based on error formatting of webpack
 // https://github.com/webpack/webpack/blob/v3.5.5/lib/Stats.js#L183-L217
 function parseCompileError(message: string): ?ErrorLocation {
-  const lines: Array<string> = message.split('\n');
-  let fileName: string = '';
+  const lines: Array<string> = message.split("\n");
+  let fileName: string = "";
   let lineNumber: number = 0;
   let colNumber: number = 0;
 

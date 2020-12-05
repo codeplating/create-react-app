@@ -6,22 +6,22 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
 
 const _preStyle = {
-  position: 'relative',
-  display: 'block',
-  padding: '0.5em',
-  marginTop: '0.5em',
-  marginBottom: '0.5em',
-  overflowX: 'auto',
-  whiteSpace: 'pre-wrap',
-  borderRadius: '0.25rem',
+  position: "relative",
+  display: "block",
+  padding: "0.5em",
+  marginTop: "0.5em",
+  marginBottom: "0.5em",
+  overflowX: "auto",
+  whiteSpace: "pre-wrap",
+  borderRadius: "0.25rem",
 };
 
 const codeStyle = {
-  fontFamily: 'Consolas, Menlo, monospace',
+  fontFamily: "Consolas, Menlo, monospace",
 };
 
 type CodeBlockPropsType = {|

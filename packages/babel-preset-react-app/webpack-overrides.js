@@ -4,11 +4,11 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-'use strict';
+"use strict";
 
-const crypto = require('crypto');
+const crypto = require("crypto");
 
-const macroCheck = new RegExp('[./]macro');
+const macroCheck = new RegExp("[./]macro");
 
 module.exports = function () {
   return {
@@ -23,7 +23,7 @@ module.exports = function () {
       if (macroCheck.test(source)) {
         return Object.assign({}, config.options, {
           caller: Object.assign({}, config.options.caller, {
-            craInvalidationToken: crypto.randomBytes(32).toString('hex'),
+            craInvalidationToken: crypto.randomBytes(32).toString("hex"),
           }),
         });
       }

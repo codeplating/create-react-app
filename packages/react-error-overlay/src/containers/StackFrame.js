@@ -6,43 +6,43 @@
  */
 
 /* @flow */
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import CodeBlock from './StackFrameCodeBlock';
-import { getPrettyURL } from '../utils/getPrettyURL';
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import CodeBlock from "./StackFrameCodeBlock";
+import { getPrettyURL } from "../utils/getPrettyURL";
 
-import type { StackFrame as StackFrameType } from '../utils/stack-frame';
-import type { ErrorLocation } from '../utils/parseCompileError';
-import type { Theme } from '../styles';
+import type { StackFrame as StackFrameType } from "../utils/stack-frame";
+import type { ErrorLocation } from "../utils/parseCompileError";
+import type { Theme } from "../styles";
 
 const linkStyle = (theme: Theme) => ({
-  fontSize: '0.9em',
-  marginBottom: '0.9em',
+  fontSize: "0.9em",
+  marginBottom: "0.9em",
 });
 
 const anchorStyle = (theme: Theme) => ({
-  textDecoration: 'none',
+  textDecoration: "none",
   color: theme.anchorColor,
-  cursor: 'pointer',
+  cursor: "pointer",
 });
 
 const codeAnchorStyle = (theme: Theme) => ({
-  cursor: 'pointer',
+  cursor: "pointer",
 });
 
 const toggleStyle = (theme: Theme) => ({
-  marginBottom: '1.5em',
+  marginBottom: "1.5em",
   color: theme.toggleColor,
-  cursor: 'pointer',
-  border: 'none',
-  display: 'block',
-  width: '100%',
-  textAlign: 'left',
+  cursor: "pointer",
+  border: "none",
+  display: "block",
+  width: "100%",
+  textAlign: "left",
   background: theme.toggleBackground,
-  fontFamily: 'Consolas, Menlo, monospace',
-  fontSize: '1em',
-  padding: '0px',
-  lineHeight: '1.5',
+  fontFamily: "Consolas, Menlo, monospace",
+  fontSize: "1em",
+  padding: "0px",
+  lineHeight: "1.5",
 });
 
 type StackFramePropsType = {|
@@ -62,16 +62,13 @@ function StackFrame(props: StackFramePropsType) {
   };
 
   const getErrorLocation = (): ErrorLocation | null => {
-    const {
-      _originalFileName: fileName,
-      _originalLineNumber: lineNumber,
-    } = props.frame;
+    const { _originalFileName: fileName, _originalLineNumber: lineNumber } = props.frame;
     // Unknown file
     if (!fileName) {
       return null;
     }
     // e.g. "/path-to-my-app/webpack/bootstrap eaddeb46b67d75e4dfc1"
-    const isInternalWebpackBootstrapCode = fileName.trim().indexOf(' ') !== -1;
+    const isInternalWebpackBootstrapCode = fileName.trim().indexOf(" ") !== -1;
     if (isInternalWebpackBootstrapCode) {
       return null;
     }
@@ -88,7 +85,7 @@ function StackFrame(props: StackFramePropsType) {
   };
 
   const onKeyDown = (e: SyntheticKeyboardEvent<any>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       editorHandler();
     }
   };
@@ -113,17 +110,12 @@ function StackFrame(props: StackFramePropsType) {
     fileName,
     lineNumber,
     columnNumber,
-    compiled
+    compiled,
   );
 
   let codeBlockProps = null;
   if (showCode) {
-    if (
-      compiled &&
-      scriptLines &&
-      scriptLines.length !== 0 &&
-      lineNumber != null
-    ) {
+    if (compiled && scriptLines && scriptLines.length !== 0 && lineNumber != null) {
       codeBlockProps = {
         lines: scriptLines,
         lineNum: lineNumber,
@@ -131,12 +123,7 @@ function StackFrame(props: StackFramePropsType) {
         contextSize,
         main: critical,
       };
-    } else if (
-      !compiled &&
-      sourceLines &&
-      sourceLines.length !== 0 &&
-      sourceLineNumber != null
-    ) {
+    } else if (!compiled && sourceLines && sourceLines.length !== 0 && sourceLineNumber != null) {
       codeBlockProps = {
         lines: sourceLines,
         lineNum: sourceLineNumber,
@@ -147,8 +134,7 @@ function StackFrame(props: StackFramePropsType) {
     }
   }
 
-  const canOpenInEditor =
-    getErrorLocation() !== null && props.editorHandler !== null;
+  const canOpenInEditor = getErrorLocation() !== null && props.editorHandler !== null;
   return (
     <div>
       <div>{functionName}</div>
@@ -157,7 +143,7 @@ function StackFrame(props: StackFramePropsType) {
           style={canOpenInEditor ? anchorStyle(theme) : null}
           onClick={canOpenInEditor ? editorHandler : null}
           onKeyDown={canOpenInEditor ? onKeyDown : null}
-          tabIndex={canOpenInEditor ? '0' : null}
+          tabIndex={canOpenInEditor ? "0" : null}
         >
           {url}
         </span>
@@ -171,7 +157,7 @@ function StackFrame(props: StackFramePropsType) {
             <CodeBlock {...codeBlockProps} />
           </span>
           <button style={toggleStyle(theme)} onClick={toggleCompiled}>
-            {'View ' + (compiled ? 'source' : 'compiled')}
+            {"View " + (compiled ? "source" : "compiled")}
           </button>
         </span>
       )}

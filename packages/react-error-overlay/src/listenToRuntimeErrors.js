@@ -5,27 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {
-  register as registerError,
-  unregister as unregisterError,
-} from './effects/unhandledError';
-import {
-  register as registerPromise,
-  unregister as unregisterPromise,
-} from './effects/unhandledRejection';
+import { register as registerError, unregister as unregisterError } from "./effects/unhandledError";
+import { register as registerPromise, unregister as unregisterPromise } from "./effects/unhandledRejection";
 import {
   register as registerStackTraceLimit,
   unregister as unregisterStackTraceLimit,
-} from './effects/stackTraceLimit';
+} from "./effects/stackTraceLimit";
 import {
   permanentRegister as permanentRegisterConsole,
   registerReactStack,
   unregisterReactStack,
-} from './effects/proxyConsole';
-import { massage as massageWarning } from './utils/warnings';
-import getStackFrames from './utils/getStackFrames';
+} from "./effects/proxyConsole";
+import { massage as massageWarning } from "./utils/warnings";
+import getStackFrames from "./utils/getStackFrames";
 
-import type { StackFrame } from './utils/stack-frame';
+import type { StackFrame } from "./utils/stack-frame";
 
 const CONTEXT_SIZE: number = 3;
 
@@ -36,12 +30,9 @@ export type ErrorRecord = {|
   stackFrames: StackFrame[],
 |};
 
-export const crashWithFrames = (crash: ErrorRecord => void) => (
-  error: Error,
-  unhandledRejection = false
-) => {
+export const crashWithFrames = (crash: (ErrorRecord) => void) => (error: Error, unhandledRejection = false) => {
   getStackFrames(error, unhandledRejection, CONTEXT_SIZE)
-    .then(stackFrames => {
+    .then((stackFrames) => {
       if (stackFrames == null) {
         return;
       }
@@ -52,22 +43,19 @@ export const crashWithFrames = (crash: ErrorRecord => void) => (
         stackFrames,
       });
     })
-    .catch(e => {
-      console.log('Could not get the stack frames of error:', e);
+    .catch((e) => {
+      console.log("Could not get the stack frames of error:", e);
     });
 };
 
-export function listenToRuntimeErrors(
-  crash: ErrorRecord => void,
-  filename: string = '/static/js/bundle.js'
-) {
+export function listenToRuntimeErrors(crash: (ErrorRecord) => void, filename: string = "/static/js/bundle.js") {
   const crashWithFramesRunTime = crashWithFrames(crash);
 
-  registerError(window, error => crashWithFramesRunTime(error, false));
-  registerPromise(window, error => crashWithFramesRunTime(error, true));
+  registerError(window, (error) => crashWithFramesRunTime(error, false));
+  registerPromise(window, (error) => crashWithFramesRunTime(error, true));
   registerStackTraceLimit();
   registerReactStack();
-  permanentRegisterConsole('error', (warning, stack) => {
+  permanentRegisterConsole("error", (warning, stack) => {
     const data = massageWarning(warning, stack);
     crashWithFramesRunTime(
       // $FlowFixMe
@@ -76,7 +64,7 @@ export function listenToRuntimeErrors(
         stack: data.stack,
         __unmap_source: filename,
       },
-      false
+      false,
     );
   });
 

@@ -31,18 +31,15 @@ function registerUnhandledError(target: EventTarget, callback: ErrorCallback) {
     return;
   }
   boundErrorHandler = errorHandler.bind(undefined, callback);
-  target.addEventListener('error', boundErrorHandler);
+  target.addEventListener("error", boundErrorHandler);
 }
 
 function unregisterUnhandledError(target: EventTarget) {
   if (boundErrorHandler === null) {
     return;
   }
-  target.removeEventListener('error', boundErrorHandler);
+  target.removeEventListener("error", boundErrorHandler);
   boundErrorHandler = null;
 }
 
-export {
-  registerUnhandledError as register,
-  unregisterUnhandledError as unregister,
-};
+export { registerUnhandledError as register, unregisterUnhandledError as unregister };

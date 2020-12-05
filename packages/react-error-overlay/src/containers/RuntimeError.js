@@ -6,16 +6,16 @@
  */
 
 /* @flow */
-import React from 'react';
-import Header from '../components/Header';
-import StackTrace from './StackTrace';
+import React from "react";
+import Header from "../components/Header";
+import StackTrace from "./StackTrace";
 
-import type { StackFrame } from '../utils/stack-frame';
-import type { ErrorLocation } from '../utils/parseCompileError';
+import type { StackFrame } from "../utils/stack-frame";
+import type { ErrorLocation } from "../utils/parseCompileError";
 
 const wrapperStyle = {
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
 };
 
 export type ErrorRecord = {|
@@ -32,25 +32,22 @@ type Props = {|
 
 function RuntimeError({ errorRecord, editorHandler }: Props) {
   const { error, unhandledRejection, contextSize, stackFrames } = errorRecord;
-  const errorName = unhandledRejection
-    ? 'Unhandled Rejection (' + error.name + ')'
-    : error.name;
+  const errorName = unhandledRejection ? "Unhandled Rejection (" + error.name + ")" : error.name;
 
   // Make header prettier
   const message = error.message;
-  let headerText =
-    message.match(/^\w*:/) || !errorName ? message : errorName + ': ' + message;
+  let headerText = message.match(/^\w*:/) || !errorName ? message : errorName + ": " + message;
 
   headerText = headerText
     // TODO: maybe remove this prefix from fbjs?
     // It's just scaring people
-    .replace(/^Invariant Violation:\s*/, '')
+    .replace(/^Invariant Violation:\s*/, "")
     // This is not helpful either:
-    .replace(/^Warning:\s*/, '')
+    .replace(/^Warning:\s*/, "")
     // Break the actionable part to the next line.
     // AFAIK React 16+ should already do this.
-    .replace(' Check the render method', '\n\nCheck the render method')
-    .replace(' Check your code at', '\n\nCheck your code at');
+    .replace(" Check the render method", "\n\nCheck the render method")
+    .replace(" Check your code at", "\n\nCheck your code at");
 
   return (
     <div style={wrapperStyle}>

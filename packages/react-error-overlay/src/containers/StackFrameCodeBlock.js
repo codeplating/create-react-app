@@ -6,14 +6,14 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import CodeBlock from '../components/CodeBlock';
-import { absolutifyCaret } from '../utils/dom/absolutifyCaret';
-import type { ScriptLine } from '../utils/stack-frame';
-import generateAnsiHTML from '../utils/generateAnsiHTML';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import CodeBlock from "../components/CodeBlock";
+import { absolutifyCaret } from "../utils/dom/absolutifyCaret";
+import type { ScriptLine } from "../utils/stack-frame";
+import generateAnsiHTML from "../utils/generateAnsiHTML";
 
-import { codeFrameColumns } from '@babel/code-frame';
+import { codeFrameColumns } from "@babel/code-frame";
 
 type StackFrameCodeBlockPropsType = {|
   lines: ScriptLine[],
@@ -35,7 +35,7 @@ function StackFrameCodeBlock(props: Exact<StackFrameCodeBlockPropsType>) {
   lines.forEach(function (e) {
     const { content: text } = e;
     const m = text.match(/^\s*/);
-    if (text === '') {
+    if (text === "") {
       return;
     }
     if (m && m[0]) {
@@ -54,24 +54,21 @@ function StackFrameCodeBlock(props: Exact<StackFrameCodeBlockPropsType>) {
     sourceCode[line - 1] = text;
   });
   const ansiHighlight = codeFrameColumns(
-    sourceCode.join('\n'),
+    sourceCode.join("\n"),
     {
       start: {
         line: lineNum,
-        column:
-          columnNum == null
-            ? 0
-            : columnNum - (isFinite(whiteSpace) ? whiteSpace : 0),
+        column: columnNum == null ? 0 : columnNum - (isFinite(whiteSpace) ? whiteSpace : 0),
       },
     },
     {
       forceColor: true,
       linesAbove: contextSize,
       linesBelow: contextSize,
-    }
+    },
   );
   const htmlHighlight = generateAnsiHTML(ansiHighlight, theme);
-  const code = document.createElement('code');
+  const code = document.createElement("code");
   code.innerHTML = htmlHighlight;
   absolutifyCaret(code);
 
@@ -86,7 +83,7 @@ function StackFrameCodeBlock(props: Exact<StackFrameCodeBlockPropsType>) {
       if (text == null) {
         continue;
       }
-      if (text.indexOf(' ' + lineNum + ' |') === -1) {
+      if (text.indexOf(" " + lineNum + " |") === -1) {
         continue;
       }
       // eslint-disable-next-line

@@ -6,21 +6,21 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import type { Theme } from '../styles';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import type { Theme } from "../styles";
 
 const headerStyle = (theme: Theme) => ({
-  fontSize: '2em',
-  fontFamily: 'sans-serif',
+  fontSize: "2em",
+  fontFamily: "sans-serif",
   color: theme.headerColor,
-  whiteSpace: 'pre-wrap',
+  whiteSpace: "pre-wrap",
   // Top bottom margin spaces header
   // Right margin revents overlap with close button
-  margin: '0 2rem 0.75rem 0',
-  flex: '0 0 auto',
-  maxHeight: '50%',
-  overflow: 'auto',
+  margin: "0 2rem 0.75rem 0",
+  flex: "0 0 auto",
+  maxHeight: "50%",
+  overflow: "auto",
 });
 
 type HeaderPropType = {|

@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class ClassProperties extends Component {
   static propTypes = {
@@ -14,10 +14,10 @@ export default class ClassProperties extends Component {
   };
 
   users = [
-    { id: 1, name: '1' },
-    { id: 2, name: '2' },
-    { id: 3, name: '3' },
-    { id: 4, name: '4' },
+    { id: 1, name: "1" },
+    { id: 2, name: "2" },
+    { id: 3, name: "3" },
+    { id: 4, name: "4" },
   ];
 
   componentDidMount() {
@@ -27,7 +27,7 @@ export default class ClassProperties extends Component {
   render() {
     return (
       <div id="feature-class-properties">
-        {this.users.map(user => (
+        {this.users.map((user) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>

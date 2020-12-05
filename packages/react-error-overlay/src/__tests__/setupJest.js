@@ -5,4 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-global.fetch = require('jest-fetch-mock');
+global.fetch = require("jest-fetch-mock");

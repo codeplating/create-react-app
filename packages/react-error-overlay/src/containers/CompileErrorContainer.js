@@ -6,18 +6,18 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import ErrorOverlay from '../components/ErrorOverlay';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import CodeBlock from '../components/CodeBlock';
-import generateAnsiHTML from '../utils/generateAnsiHTML';
-import parseCompileError from '../utils/parseCompileError';
-import type { ErrorLocation } from '../utils/parseCompileError';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import ErrorOverlay from "../components/ErrorOverlay";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import CodeBlock from "../components/CodeBlock";
+import generateAnsiHTML from "../utils/generateAnsiHTML";
+import parseCompileError from "../utils/parseCompileError";
+import type { ErrorLocation } from "../utils/parseCompileError";
 
 const codeAnchorStyle = {
-  cursor: 'pointer',
+  cursor: "pointer",
 };
 
 type CompileErrorContainerPropsType = {|

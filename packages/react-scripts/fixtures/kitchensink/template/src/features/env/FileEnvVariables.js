@@ -5,16 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React from "react";
 
 const FileEnvVariables = () => (
   <span>
-    <span id="feature-file-env-original-1">
-      {process.env.REACT_APP_ORIGINAL_1}
-    </span>
-    <span id="feature-file-env-original-2">
-      {process.env.REACT_APP_ORIGINAL_2}
-    </span>
+    <span id="feature-file-env-original-1">{process.env.REACT_APP_ORIGINAL_1}</span>
+    <span id="feature-file-env-original-2">{process.env.REACT_APP_ORIGINAL_2}</span>
     <span id="feature-file-env">
       {process.env.REACT_APP_DEVELOPMENT}
       {process.env.REACT_APP_PRODUCTION}

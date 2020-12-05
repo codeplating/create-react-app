@@ -6,36 +6,36 @@
  */
 
 /* @flow */
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../iframeScript";
 
-import type { Element as ReactElement } from 'react';
-import type { Theme } from '../styles';
+import type { Element as ReactElement } from "react";
+import type { Theme } from "../styles";
 
 const _collapsibleStyle = {
-  cursor: 'pointer',
-  border: 'none',
-  display: 'block',
-  width: '100%',
-  textAlign: 'left',
-  fontFamily: 'Consolas, Menlo, monospace',
-  fontSize: '1em',
-  padding: '0px',
-  lineHeight: '1.5',
+  cursor: "pointer",
+  border: "none",
+  display: "block",
+  width: "100%",
+  textAlign: "left",
+  fontFamily: "Consolas, Menlo, monospace",
+  fontSize: "1em",
+  padding: "0px",
+  lineHeight: "1.5",
 };
 
 const collapsibleCollapsedStyle = (theme: Theme) => ({
   ..._collapsibleStyle,
   color: theme.color,
   background: theme.background,
-  marginBottom: '1.5em',
+  marginBottom: "1.5em",
 });
 
 const collapsibleExpandedStyle = (theme: Theme) => ({
   ..._collapsibleStyle,
   color: theme.color,
   background: theme.background,
-  marginBottom: '0.6em',
+  marginBottom: "0.6em",
 });
 
 type CollapsiblePropsType = {|
@@ -55,22 +55,13 @@ function Collapsible(props: CollapsiblePropsType) {
     <div>
       <button
         onClick={toggleCollapsed}
-        style={
-          collapsed
-            ? collapsibleCollapsedStyle(theme)
-            : collapsibleExpandedStyle(theme)
-        }
+        style={collapsed ? collapsibleCollapsedStyle(theme) : collapsibleExpandedStyle(theme)}
       >
-        {(collapsed ? '▶' : '▼') +
-          ` ${count} stack frames were ` +
-          (collapsed ? 'collapsed.' : 'expanded.')}
+        {(collapsed ? "▶" : "▼") + ` ${count} stack frames were ` + (collapsed ? "collapsed." : "expanded.")}
       </button>
-      <div style={{ display: collapsed ? 'none' : 'block' }}>
+      <div style={{ display: collapsed ? "none" : "block" }}>
         {props.children}
-        <button
-          onClick={toggleCollapsed}
-          style={collapsibleExpandedStyle(theme)}
-        >
+        <button onClick={toggleCollapsed} style={collapsibleExpandedStyle(theme)}>
           {`▲ ${count} stack frames were expanded.`}
         </button>
       </div>

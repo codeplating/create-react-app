@@ -4,17 +4,15 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-'use strict';
+"use strict";
 
 function base64SourceMap(source) {
-  const base64 = Buffer.from(JSON.stringify(source.map()), 'utf8').toString(
-    'base64'
-  );
+  const base64 = Buffer.from(JSON.stringify(source.map()), "utf8").toString("base64");
   return `data:application/json;charset=utf-8;base64,${base64}`;
 }
 
 function getSourceById(server, id) {
-  const module = server._stats.compilation.modules.find(m => m.id == id);
+  const module = server._stats.compilation.modules.find((m) => m.id == id);
   return module.originalSource();
 }
 
@@ -27,7 +25,7 @@ function getSourceById(server, id) {
  */
 module.exports = function createEvalSourceMapMiddleware(server) {
   return function handleWebpackInternalMiddleware(req, res, next) {
-    if (req.url.startsWith('/__get-internal-source')) {
+    if (req.url.startsWith("/__get-internal-source")) {
       const fileName = req.query.fileName;
       const id = fileName.match(/webpack-internal:\/\/\/(.+)/)[1];
       if (!id || !server._stats) {

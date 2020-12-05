@@ -6,7 +6,7 @@
  */
 
 /* @flow */
-import { ScriptLine } from './stack-frame';
+import { ScriptLine } from "./stack-frame";
 
 /**
  *
@@ -14,20 +14,12 @@ import { ScriptLine } from './stack-frame';
  * @param {number} count The number of lines you'd like for context.
  * @param {string[] | string} lines The source code.
  */
-function getLinesAround(
-  line: number,
-  count: number,
-  lines: string[] | string
-): ScriptLine[] {
-  if (typeof lines === 'string') {
-    lines = lines.split('\n');
+function getLinesAround(line: number, count: number, lines: string[] | string): ScriptLine[] {
+  if (typeof lines === "string") {
+    lines = lines.split("\n");
   }
   const result = [];
-  for (
-    let index = Math.max(0, line - 1 - count);
-    index <= Math.min(lines.length - 1, line - 1 + count);
-    ++index
-  ) {
+  for (let index = Math.max(0, line - 1 - count); index <= Math.min(lines.length - 1, line - 1 + count); ++index) {
     result.push(new ScriptLine(index + 1, lines[index], index === line - 1));
   }
   return result;

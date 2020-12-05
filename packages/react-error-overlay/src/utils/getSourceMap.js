@@ -6,7 +6,7 @@
  */
 
 /* @flow */
-import { SourceMapConsumer } from 'source-map';
+import { SourceMapConsumer } from "source-map";
 
 /**
  * A wrapped instance of a <code>{@link https://github.com/mozilla/source-map SourceMapConsumer}</code>.
@@ -26,15 +26,8 @@ class SourceMap {
    * @param {number} line The line of the generated code position.
    * @param {number} column The column of the generated code position.
    */
-  getOriginalPosition(
-    line: number,
-    column: number
-  ): { source: string, line: number, column: number } {
-    const {
-      line: l,
-      column: c,
-      source: s,
-    } = this.__source_map.originalPositionFor({
+  getOriginalPosition(line: number, column: number): { source: string, line: number, column: number } {
+    const { line: l, column: c, source: s } = this.__source_map.originalPositionFor({
       line,
       column,
     });
@@ -47,11 +40,7 @@ class SourceMap {
    * @param {number} line The line of the original code position.
    * @param {number} column The column of the original code position.
    */
-  getGeneratedPosition(
-    source: string,
-    line: number,
-    column: number
-  ): { line: number, column: number } {
+  getGeneratedPosition(source: string, line: number, column: number): { line: number, column: number } {
     const { line: l, column: c } = this.__source_map.generatedPositionFor({
       source,
       line,
@@ -76,10 +65,7 @@ class SourceMap {
   }
 }
 
-function extractSourceMapUrl(
-  fileUri: string,
-  fileContents: string
-): Promise<string> {
+function extractSourceMapUrl(fileUri: string, fileContents: string): Promise<string> {
   const regex = /\/\/[#@] ?sourceMappingURL=([^\s'"]+)\s*$/gm;
   let match = null;
   for (;;) {
@@ -100,27 +86,22 @@ function extractSourceMapUrl(
  * @param {string} fileUri The URI of the source file.
  * @param {string} fileContents The contents of the source file.
  */
-async function getSourceMap(
-  fileUri: string,
-  fileContents: string
-): Promise<SourceMap> {
+async function getSourceMap(fileUri: string, fileContents: string): Promise<SourceMap> {
   let sm = await extractSourceMapUrl(fileUri, fileContents);
-  if (sm.indexOf('data:') === 0) {
+  if (sm.indexOf("data:") === 0) {
     const base64 = /^data:application\/json;([\w=:"-]+;)*base64,/;
     const match2 = sm.match(base64);
     if (!match2) {
-      throw new Error(
-        'Sorry, non-base64 inline source-map encoding is not supported.'
-      );
+      throw new Error("Sorry, non-base64 inline source-map encoding is not supported.");
     }
     sm = sm.substring(match2[0].length);
     sm = window.atob(sm);
     sm = JSON.parse(sm);
     return new SourceMap(new SourceMapConsumer(sm));
   } else {
-    const index = fileUri.lastIndexOf('/');
+    const index = fileUri.lastIndexOf("/");
     const url = fileUri.substring(0, index + 1) + sm;
-    const obj = await fetch(url).then(res => res.json());
+    const obj = await fetch(url).then((res) => res.json());
     return new SourceMap(new SourceMapConsumer(obj));
   }
 }

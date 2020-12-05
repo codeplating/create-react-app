@@ -6,20 +6,20 @@
  */
 
 /* @flow */
-import React, { Component } from 'react';
-import StackFrame from './StackFrame';
-import Collapsible from '../components/Collapsible';
-import { isInternalFile } from '../utils/isInternalFile';
-import { isBultinErrorName } from '../utils/isBultinErrorName';
+import React, { Component } from "react";
+import StackFrame from "./StackFrame";
+import Collapsible from "../components/Collapsible";
+import { isInternalFile } from "../utils/isInternalFile";
+import { isBultinErrorName } from "../utils/isBultinErrorName";
 
-import type { StackFrame as StackFrameType } from '../utils/stack-frame';
-import type { ErrorLocation } from '../utils/parseCompileError';
+import type { StackFrame as StackFrameType } from "../utils/stack-frame";
+import type { ErrorLocation } from "../utils/parseCompileError";
 
 const traceStyle = {
-  fontSize: '1em',
-  flex: '0 1 auto',
-  minHeight: '0px',
-  overflow: 'auto',
+  fontSize: "1em",
+  flex: "0 1 auto",
+  minHeight: "0px",
+  overflow: "auto",
 };
 
 type Props = {|
@@ -41,8 +41,7 @@ class StackTrace extends Component<Props> {
       const { fileName, _originalFileName: sourceFileName } = frame;
       const isInternalUrl = isInternalFile(sourceFileName, fileName);
       const isThrownIntentionally = !isBultinErrorName(errorName);
-      const shouldCollapse =
-        isInternalUrl && (isThrownIntentionally || hasReachedAppCode);
+      const shouldCollapse = isInternalUrl && (isThrownIntentionally || hasReachedAppCode);
 
       if (!isInternalUrl) {
         hasReachedAppCode = true;
@@ -50,7 +49,7 @@ class StackTrace extends Component<Props> {
 
       const frameEle = (
         <StackFrame
-          key={'frame-' + index}
+          key={"frame-" + index}
           frame={frame}
           contextSize={contextSize}
           critical={index === 0}
@@ -69,11 +68,7 @@ class StackTrace extends Component<Props> {
           renderedFrames.push(currentBundle[0]);
         } else if (currentBundle.length > 1) {
           bundleCount++;
-          renderedFrames.push(
-            <Collapsible key={'bundle-' + bundleCount}>
-              {currentBundle}
-            </Collapsible>
-          );
+          renderedFrames.push(<Collapsible key={"bundle-" + bundleCount}>{currentBundle}</Collapsible>);
         }
         currentBundle = [];
       }

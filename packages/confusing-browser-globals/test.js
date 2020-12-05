@@ -7,14 +7,14 @@
 
 /* eslint-env jest */
 
-'use strict';
+"use strict";
 
-let globals = require('./index');
+let globals = require("./index");
 
-it('should return an Array of globals', () => {
+it("should return an Array of globals", () => {
   expect(Array.isArray(globals)).toBe(true);
 });
 
 it('should contain "event" variable', () => {
-  expect(globals).toContain('event');
+  expect(globals).toContain("event");
 });

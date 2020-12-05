@@ -6,19 +6,19 @@
  */
 
 /* @flow */
-import { lightTheme, darkTheme } from '../../styles';
+import { lightTheme, darkTheme } from "../../styles";
 
 let injectedCount = 0;
 const injectedCache = {};
 
 function getHead(document: Document) {
-  return document.head || document.getElementsByTagName('head')[0];
+  return document.head || document.getElementsByTagName("head")[0];
 }
 
 function injectCss(document: Document, css: string): number {
   const head = getHead(document);
-  const style = document.createElement('style');
-  style.type = 'text/css';
+  const style = document.createElement("style");
+  style.type = "text/css";
   style.appendChild(document.createTextNode(css));
   head.appendChild(style);
 
@@ -36,7 +36,7 @@ function removeCss(document: Document, ref: number) {
 }
 
 function applyStyles(element: HTMLElement, styles: Object) {
-  element.setAttribute('style', '');
+  element.setAttribute("style", "");
   for (const key in styles) {
     if (!styles.hasOwnProperty(key)) {
       continue;
@@ -47,10 +47,7 @@ function applyStyles(element: HTMLElement, styles: Object) {
 }
 
 function getTheme() {
-  return window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? darkTheme
-    : lightTheme;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? darkTheme : lightTheme;
 }
 
 export { getHead, injectCss, removeCss, applyStyles, getTheme };

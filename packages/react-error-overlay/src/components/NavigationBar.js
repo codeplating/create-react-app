@@ -6,40 +6,40 @@
  */
 
 /* @flow */
-import React, { useContext } from 'react';
-import { ThemeContext } from '../iframeScript';
-import type { Theme } from '../styles';
+import React, { useContext } from "react";
+import { ThemeContext } from "../iframeScript";
+import type { Theme } from "../styles";
 
 const navigationBarStyle = {
-  marginBottom: '0.5rem',
+  marginBottom: "0.5rem",
 };
 
 const buttonContainerStyle = {
-  marginRight: '1em',
+  marginRight: "1em",
 };
 
 const _navButtonStyle = {
-  border: 'none',
-  borderRadius: '4px',
-  padding: '3px 6px',
-  cursor: 'pointer',
+  border: "none",
+  borderRadius: "4px",
+  padding: "3px 6px",
+  cursor: "pointer",
 };
 
 const leftButtonStyle = (theme: Theme) => ({
   ..._navButtonStyle,
   backgroundColor: theme.navBackground,
   color: theme.navArrow,
-  borderTopRightRadius: '0px',
-  borderBottomRightRadius: '0px',
-  marginRight: '1px',
+  borderTopRightRadius: "0px",
+  borderBottomRightRadius: "0px",
+  marginRight: "1px",
 });
 
 const rightButtonStyle = (theme: Theme) => ({
   ..._navButtonStyle,
   backgroundColor: theme.navBackground,
   color: theme.navArrow,
-  borderTopLeftRadius: '0px',
-  borderBottomLeftRadius: '0px',
+  borderTopLeftRadius: "0px",
+  borderBottomLeftRadius: "0px",
 });
 
 type Callback = () => void;

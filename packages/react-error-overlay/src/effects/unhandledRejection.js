@@ -10,12 +10,9 @@ let boundRejectionHandler = null;
 
 type ErrorCallback = (error: Error) => void;
 
-function rejectionHandler(
-  callback: ErrorCallback,
-  e: PromiseRejectionEvent
-): void {
+function rejectionHandler(callback: ErrorCallback, e: PromiseRejectionEvent): void {
   if (e == null || e.reason == null) {
-    return callback(new Error('Unknown'));
+    return callback(new Error("Unknown"));
   }
   let { reason } = e;
   if (reason instanceof Error) {
@@ -26,16 +23,13 @@ function rejectionHandler(
   return callback(new Error(reason));
 }
 
-function registerUnhandledRejection(
-  target: EventTarget,
-  callback: ErrorCallback
-) {
+function registerUnhandledRejection(target: EventTarget, callback: ErrorCallback) {
   if (boundRejectionHandler !== null) {
     return;
   }
   boundRejectionHandler = rejectionHandler.bind(undefined, callback);
   // $FlowFixMe
-  target.addEventListener('unhandledrejection', boundRejectionHandler);
+  target.addEventListener("unhandledrejection", boundRejectionHandler);
 }
 
 function unregisterUnhandledRejection(target: EventTarget) {
@@ -43,11 +37,8 @@ function unregisterUnhandledRejection(target: EventTarget) {
     return;
   }
   // $FlowFixMe
-  target.removeEventListener('unhandledrejection', boundRejectionHandler);
+  target.removeEventListener("unhandledrejection", boundRejectionHandler);
   boundRejectionHandler = null;
 }
 
-export {
-  registerUnhandledRejection as register,
-  unregisterUnhandledRejection as unregister,
-};
+export { registerUnhandledRejection as register, unregisterUnhandledRejection as unregister };

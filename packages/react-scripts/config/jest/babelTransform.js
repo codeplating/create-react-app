@@ -5,17 +5,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-'use strict';
+"use strict";
 
-const babelJest = require('babel-jest');
+const babelJest = require("babel-jest");
 
 const hasJsxRuntime = (() => {
-  if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
+  if (process.env.DISABLE_NEW_JSX_TRANSFORM === "true") {
     return false;
   }
 
   try {
-    require.resolve('react/jsx-runtime');
+    require.resolve("react/jsx-runtime");
     return true;
   } catch (e) {
     return false;
@@ -25,9 +25,9 @@ const hasJsxRuntime = (() => {
 module.exports = babelJest.createTransformer({
   presets: [
     [
-      require.resolve('babel-preset-react-app'),
+      require.resolve("babel-preset-react-app"),
       {
-        runtime: hasJsxRuntime ? 'automatic' : 'classic',
+        runtime: hasJsxRuntime ? "automatic" : "classic",
       },
     ],
   ],

@@ -37,7 +37,4 @@ function unregisterStackTraceLimit() {
   }
 }
 
-export {
-  registerStackTraceLimit as register,
-  unregisterStackTraceLimit as unregister,
-};
+export { registerStackTraceLimit as register, unregisterStackTraceLimit as unregister };

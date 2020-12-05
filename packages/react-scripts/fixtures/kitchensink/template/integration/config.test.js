@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import initDOM from './initDOM';
+import initDOM from "./initDOM";
 
-describe('Integration', () => {
-  describe('jsconfig.json/tsconfig.json', () => {
+describe("Integration", () => {
+  describe("jsconfig.json/tsconfig.json", () => {
     let doc;
 
     afterEach(() => {
@@ -16,10 +16,10 @@ describe('Integration', () => {
       doc = undefined;
     });
 
-    it('Supports setting baseUrl to src', async () => {
-      doc = await initDOM('base-url');
+    it("Supports setting baseUrl to src", async () => {
+      doc = await initDOM("base-url");
 
-      expect(doc.getElementById('feature-base-url').childElementCount).toBe(4);
+      expect(doc.getElementById("feature-base-url").childElementCount).toBe(4);
     });
   });
 });

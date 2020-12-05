@@ -5,22 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const styled = ([style]) =>
   style
     .trim()
     .split(/\s*;\s*/)
-    .map(rule => rule.split(/\s*:\s*/))
+    .map((rule) => rule.split(/\s*:\s*/))
     .reduce((rules, rule) => ({ ...rules, [rule[0]]: rule[1] }), {});
 
 function load() {
   return [
-    { id: 1, name: '1' },
-    { id: 2, name: '2' },
-    { id: 3, name: '3' },
-    { id: 4, name: '4' },
+    { id: 1, name: "1" },
+    { id: 2, name: "2" },
+    { id: 3, name: "3" },
+    { id: 4, name: "4" },
   ];
 }
 
@@ -51,7 +51,7 @@ export default class CustomInterpolation extends Component {
 
     return (
       <div id="feature-custom-interpolation">
-        {this.state.users.map(user => (
+        {this.state.users.map((user) => (
           <div key={user.id} style={veryInlineStyle}>
             {user.name}
           </div>

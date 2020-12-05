@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 function load(baseUser) {
   return [
-    { id: 1, name: '1', ...baseUser },
-    { id: 2, name: '2', ...baseUser },
-    { id: 3, name: '3', ...baseUser },
-    { id: 4, name: '4', ...baseUser },
+    { id: 1, name: "1", ...baseUser },
+    { id: 2, name: "2", ...baseUser },
+    { id: 3, name: "3", ...baseUser },
+    { id: 4, name: "4", ...baseUser },
   ];
 }
 
@@ -39,7 +39,7 @@ export default class ObjectSpread extends Component {
   render() {
     return (
       <div id="feature-object-spread">
-        {this.state.users.map(user => (
+        {this.state.users.map((user) => (
           <div key={user.id}>
             {user.name}: {user.age}
           </div>
